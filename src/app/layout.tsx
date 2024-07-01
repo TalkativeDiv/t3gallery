@@ -11,14 +11,28 @@ const inter = Inter({
   subsets: ["latin"],
   variable: "--font-sans",
 });
+
+
+
+function Navbar() {
+  return (
+    <nav className="flex w-full items-center justify-between p-4 text-xl font-semibold border-b">
+      <div>Gallery</div>
+
+      <div>Sign In</div>
+    </nav>
+  )
+}
+
+
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${inter.variable}`}>
-      <body>{children}</body>
+    <html lang="en">
+      <body className={`${inter.variable} bg-slate-950 text-white w-full antialiased font-sans flex flex-col gap-4`}><Navbar />{children}</body>
     </html>
   );
 }

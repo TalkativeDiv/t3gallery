@@ -1,8 +1,12 @@
 import "~/styles/globals.css";
 
-import { Navbar } from "./_components/topnav";
 import { ClerkProvider } from "@clerk/nextjs";
+import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
 import { Inter } from "next/font/google";
+import { extractRouterConfig } from "uploadthing/server";
+import { ourFileRouter } from "~/app/api/uploadthing/core";
+import { cn } from "~/lib/utils";
+import { Navbar } from "./_components/topnav";
 
 export const metadata = {
   title: "T3 Gallery",
@@ -23,7 +27,18 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
-        <body className={`${inter.variable} bg-slate-950 text-white w-full antialiased font-sans flex flex-col gap-4`}><Navbar />{children}</body>
+        <body className={cn(
+          "min-h-screen bg-background dark font-sans antialiased w-full flex flex-col gap-4",
+          inter.variable
+        )}> <NextSSRPlugin
+            /**
+             * The `extractRouterConfig` will extract **only** the route configs
+             * from the router to prevent additional information from being
+             * leaked to the client. The data passed to the client is the same
+             * as if you were to fetch `/api/uploadthing` directly.
+             */
+            routerConfig={extractRouterConfig(ourFileRouter)}
+          /><Navbar />{children}</body>
       </html>
     </ClerkProvider>
   );

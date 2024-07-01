@@ -6,7 +6,7 @@
 - [x] Scaffold basic ui with mock data
 - [x] Tidy up build process
 - [x] Actually set up a database
-- [ ] Attach database to UI
+- [x] Attach database to UI
 - [ ] Add auth (clerk)
 - [ ] Add image uploading
 - [ ] Error mangagement (sentry)

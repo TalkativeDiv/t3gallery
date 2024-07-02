@@ -6,7 +6,7 @@ import { Inter } from "next/font/google";
 import { extractRouterConfig } from "uploadthing/server";
 import { ourFileRouter } from "~/app/api/uploadthing/core";
 import { cn } from "~/lib/utils";
-import { Navbar } from "./_components/topnav";
+import { Navbar } from "~/app/_components/topnav";
 
 export const metadata = {
   title: "T3 Gallery",

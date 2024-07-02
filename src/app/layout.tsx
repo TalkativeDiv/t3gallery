@@ -4,9 +4,9 @@ import { ClerkProvider } from "@clerk/nextjs";
 import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
 import { Inter } from "next/font/google";
 import { extractRouterConfig } from "uploadthing/server";
-import { ourFileRouter } from "~/app/api/uploadthing/core";
+import { ourFileRouter } from "./api/uploadthing/core";
 import { cn } from "~/lib/utils";
-import { Navbar } from "~/app/_components/topnav";
+import { Navbar } from "~/components/topnav";
 
 export const metadata = {
   title: "T3 Gallery",

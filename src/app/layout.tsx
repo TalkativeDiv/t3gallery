@@ -30,11 +30,11 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en">
         <body className={cn(
-          "min-h-screen bg-background dark font-sans antialiased w-full flex flex-col gap-4",
+          "bg-background dark font-sans antialiased w-full",
           inter.variable
         )}>
           <NextSSRPlugin routerConfig={extractRouterConfig(ourFileRouter)} />
-          <div className="grid min-h-screen grid-rows-[auto,1fr]">
+          <div className="grid h-screen grid-rows-[auto,1fr]">
             <Navbar />
             <main className="overflow-y-scroll">{children}</main>
             {modal}

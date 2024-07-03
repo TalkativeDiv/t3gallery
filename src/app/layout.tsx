@@ -4,9 +4,9 @@ import { ClerkProvider } from "@clerk/nextjs";
 import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
 import { Inter } from "next/font/google";
 import { extractRouterConfig } from "uploadthing/server";
-import { ourFileRouter } from "./api/uploadthing/core";
-import { cn } from "~/lib/utils";
 import { Navbar } from "~/app/_components/topnav";
+import { cn } from "~/lib/utils";
+import { ourFileRouter } from "./api/uploadthing/core";
 
 export const metadata = {
   title: "T3 Gallery",
@@ -21,8 +21,10 @@ const inter = Inter({
 
 export default function RootLayout({
   children,
+  modal
 }: {
   children: React.ReactNode;
+  modal: React.ReactNode;
 }) {
   return (
     <ClerkProvider>
@@ -30,15 +32,15 @@ export default function RootLayout({
         <body className={cn(
           "min-h-screen bg-background dark font-sans antialiased w-full flex flex-col gap-4",
           inter.variable
-        )}> <NextSSRPlugin
-            /**
-             * The `extractRouterConfig` will extract **only** the route configs
-             * from the router to prevent additional information from being
-             * leaked to the client. The data passed to the client is the same
-             * as if you were to fetch `/api/uploadthing` directly.
-             */
-            routerConfig={extractRouterConfig(ourFileRouter)}
-          /><Navbar />{children}</body>
+        )}>
+          <NextSSRPlugin routerConfig={extractRouterConfig(ourFileRouter)} />
+          <div className="grid min-h-screen grid-rows-[auto,1fr]">
+            <Navbar />
+            <main className="overflow-y-scroll">{children}</main>
+            {modal}
+          </div>
+          <div id="modal-root" />
+        </body>
       </html>
     </ClerkProvider>
   );

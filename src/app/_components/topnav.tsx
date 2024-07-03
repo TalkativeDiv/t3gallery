@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { buttonVariants } from "~/components/ui/button";
 import { cn } from "~/lib/utils";
 import { UploadButton } from "~/utils/uploadthing";
+import { SimpleUploadButton } from "./upload-button";
 
 export function Navbar() {
     const router = useRouter()
@@ -17,10 +18,12 @@ export function Navbar() {
                 </SignedOut>
                 <SignedIn>
                     <div className="flex justify-between items-center gap-2">
-                        <UploadButton endpoint="imageUploader"
+                        {/* <UploadButton endpoint="imageUploader"
                             appearance={{ button: cn(buttonVariants({ size: "sm" }), "bg-primary"), allowedContent: "hidden" }}
                             onClientUploadComplete={() => { router.refresh() }}
-                        />
+                        /> */}
+                        <SimpleUploadButton />
+
                         <UserButton />
                     </div>
                 </SignedIn>

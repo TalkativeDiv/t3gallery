@@ -4,13 +4,12 @@ import { useRouter } from "next/navigation";
 import { buttonVariants } from "~/components/ui/button";
 import { cn } from "~/lib/utils";
 import { UploadButton } from "~/utils/uploadthing";
-import { SimpleUploadButton } from "./upload-button";
 
 export function Navbar() {
     const router = useRouter()
     return (
         <nav className="flex w-full items-center justify-between p-4 text-xl font-semibold border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-            <div>Gallery</div>
+            <a href="/">Gallery</a>
 
             <div className="flex flex-row">
                 <SignedOut>
@@ -18,11 +17,10 @@ export function Navbar() {
                 </SignedOut>
                 <SignedIn>
                     <div className="flex justify-between items-center gap-2">
-                        {/* <UploadButton endpoint="imageUploader"
+                        <UploadButton endpoint="imageUploader"
                             appearance={{ button: cn(buttonVariants({ size: "sm" }), "bg-primary"), allowedContent: "hidden" }}
                             onClientUploadComplete={() => { router.refresh() }}
-                        /> */}
-                        <SimpleUploadButton />
+                        />
 
                         <UserButton />
                     </div>

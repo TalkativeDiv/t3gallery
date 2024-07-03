@@ -26,14 +26,14 @@ async function Images() {
   }
   return (
     <div className="flex flex-wrap justify-center gap-4 p-4">
-      {images.map((image) => (
+      {[...images,...images,...images,...images,...images,...images,].map((image) => (
         <Card key={image.id} className="flex flex-col justify-center p-4">
           <Link href={`/img/${image.id}`}>
             <Image
               src={image.url}
+              height={192}
               width={192}
               style={{ objectFit: "cover" }}
-              height={192}
               className="rounded-lg"
               alt={image.name}
             />

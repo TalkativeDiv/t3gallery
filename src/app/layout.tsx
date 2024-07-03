@@ -6,8 +6,9 @@ import { Inter } from "next/font/google";
 import { extractRouterConfig } from "uploadthing/server";
 import { Navbar } from "~/app/_components/topnav";
 import { cn } from "~/lib/utils";
+import { Footer } from "./_components/footer";
+import { ThemeProvider } from "./_components/theme-provider";
 import { ourFileRouter } from "./api/uploadthing/core";
-
 export const metadata = {
   title: "T3 Gallery",
   description: "The most based gallery in all of the internet 🗿",
@@ -27,21 +28,26 @@ export default function RootLayout({
   modal: React.ReactNode;
 }) {
   return (
-    <ClerkProvider>
-      <html lang="en">
-        <body className={cn(
-          "bg-background dark font-sans antialiased w-full",
-          inter.variable
-        )}>
-          <NextSSRPlugin routerConfig={extractRouterConfig(ourFileRouter)} />
-          <div className="grid h-screen grid-rows-[auto,1fr]">
-            <Navbar />
-            <main className="overflow-y-scroll">{children}</main>
-            {modal}
-          </div>
-          <div id="modal-root" />
-        </body>
-      </html>
-    </ClerkProvider>
+
+    <html lang="en" suppressHydrationWarning>
+      <body className={cn(
+        "bg-background font-sans antialiased w-full",
+        inter.variable
+      )}>
+        <ClerkProvider>
+          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+            <NextSSRPlugin routerConfig={extractRouterConfig(ourFileRouter)} />
+            <div className="grid h-screen grid-rows-[auto,1fr]">
+              <Navbar />
+              <main className="overflow-y-scroll">{children}</main>
+              <Footer />
+              {modal}
+            </div>
+            <div id="modal-root" />
+          </ThemeProvider>
+        </ClerkProvider>
+      </body>
+    </html>
+
   );
 }

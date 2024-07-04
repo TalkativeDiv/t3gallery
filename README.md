@@ -13,5 +13,5 @@
 - [x] Use Next/Image Component
 - [x] Error mangagement (sentry)
 - [x] Routing + Image Page (Parallel route)
-- [ ] Delete button (w/ Server Actions)
-- [ ] Ratelimiting (upstash)
+- [x] Delete button (w/ Server Actions)
+- [x] Ratelimiting (upstash)

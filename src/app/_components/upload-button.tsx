@@ -67,6 +67,10 @@ export function UploadButton() {
                 },
             );
         },
+        onUploadError(){
+            toast.dismiss("upload-begin");
+            toast.error("Upload failed. Please try again.");
+        },
         onClientUploadComplete() {
             toast.dismiss("upload-begin");
             toast("Upload complete!")

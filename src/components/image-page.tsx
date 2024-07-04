@@ -1,7 +1,7 @@
 import { clerkClient } from '@clerk/nextjs/server';
 import { X } from 'lucide-react';
 import React from 'react';
-import { getSpecificImage } from '~/server/queries';
+import { deleteImage, getSpecificImage } from '~/server/queries';
 import { Badge } from './ui/badge';
 import { Button } from './ui/button';
 export default async function ImagePage(props: { imgId: number }) {
@@ -22,14 +22,18 @@ export default async function ImagePage(props: { imgId: number }) {
         return extensions;
     }
     const uploaderInfo = await clerkClient.users.getUser(image.userId)
-
+    async function handleDelete() {
+        "use server"
+        
+        await deleteImage(image.id)
+    }
     return (
-        <div className="flex min-w-0 w-full h-full">
+        <div className="flex min-w-0 w-full h-full justify-between">
             <Button variant="ghost" size="sm" className='m-2' asChild><a href="/"><X /></a></Button>
             <div className="flex-shrink flex justify-center items-center p-8 flex-col">
                 <img src={image.url} alt={image.name} className="object-contain" />
             </div>
-            <div className="w-64 flex flex-col flex-shrink-0 border-l-2 p-2 ">
+            <div className="flex flex-col flex-shrink-0 border-l-2 p-2 m-4 w-64">
                 <div className="text-xl font-bold border-b-2 p-2 flex justify-between items-center">
                     {image.name.replace(/\.(png|jpg|jpeg|gif|bmp|svg)\b/gi, "")}
                     <Badge>{getImageEndings(image.name)}</Badge>
@@ -41,6 +45,11 @@ export default async function ImagePage(props: { imgId: number }) {
                 <div className="flex flex-col p-2">
                     <span>Created On:</span>
                     <span>{new Date(image.createdAt).toLocaleDateString()}</span>
+                </div>
+                <div className="flex flex-col p-2">
+                    <form action={handleDelete}>
+                        <Button variant="destructive" type="submit">Delete</Button>
+                    </form>
                 </div>
             </div>
         </div>

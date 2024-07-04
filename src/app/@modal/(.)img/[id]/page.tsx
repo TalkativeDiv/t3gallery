@@ -1,5 +1,4 @@
 import React from 'react'
-import { getSpecificImage } from '~/server/queries'
 import { Modal } from "./modal"
 import ImagePage from '~/components/image-page'
 export default function ImageModal({

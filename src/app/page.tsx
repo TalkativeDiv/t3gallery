@@ -1,20 +1,20 @@
-import { SignedIn, SignedOut } from "@clerk/nextjs";
+import { SignedIn, SignedOut, SignInButton } from "@clerk/nextjs";
 import Image from "next/image";
 import Link from "next/link";
 import { Badge } from "~/components/ui/badge";
-import { Card, CardContent, CardDescription, CardTitle } from "~/components/ui/card";
+import { Card } from "~/components/ui/card";
 import { getImages } from "~/server/queries";
-export const dynamic = "force-dynamic"
-
+import { Button } from "~/components/ui/button";
+export const dynamic = "force-dynamic";
 
 async function Images() {
-  const images = await getImages()
+  const images = await getImages();
   function getImageEndings(text: string) {
     // Regular expression to match file extensions after the last period
     const extensionRegex = /\.[^.]+$/g;
 
     // Array to store matched extensions
-    let extensions = [];
+    const extensions = [];
 
     // Use a loop to find all matches in the text
     let match;
@@ -38,28 +38,29 @@ async function Images() {
               alt={image.name}
             />
             <br />
-            <div className="flex justify-between items-center">
+            <div className="flex items-center justify-between">
               <div>
                 {image.name.replace(/\.(png|jpg|jpeg|gif|bmp|svg)\b/gi, "")}
               </div>
-              <Badge variant="secondary">
-                {getImageEndings(image.name)}
-              </Badge>
+              <Badge variant="secondary">{getImageEndings(image.name)}</Badge>
             </div>
           </Link>
-
         </Card>
       ))}
     </div>
-  )
+  );
 }
-
 
 export default function HomePage() {
   return (
     <main>
       <SignedOut>
-        <div className="h-full w-full text-2xl text-center">Please Sign In above</div>
+        <div className=" h-screen w-full text-center">
+          To use this app, please{" "}
+          <Button asChild variant="ghost">
+            <SignInButton />
+          </Button>
+        </div>
       </SignedOut>
       <SignedIn>
         <Images />

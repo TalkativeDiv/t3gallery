@@ -1,17 +1,17 @@
-import React from 'react'
-import { Modal } from "./modal"
-import ImagePage from '~/components/image-page'
+import React from "react";
+import { Modal } from "./modal";
+import ImagePage from "~/components/image-page";
 export default function ImageModal({
-    params: { id: imgId }
+  params: { id: imgId },
 }: {
-    params: { id: string }
+  params: { id: string };
 }) {
-    const idAsNumber = Number(imgId)
-    if (Number.isNaN(idAsNumber)) throw new Error('Invalid image ID')
+  const idAsNumber = Number(imgId);
+  if (Number.isNaN(idAsNumber)) throw new Error("Invalid image ID");
 
-        return (
-        <Modal>
-            <ImagePage imgId={idAsNumber} />
-        </Modal>
-    )
+  return (
+    <Modal>
+      <ImagePage imgId={idAsNumber} />
+    </Modal>
+  );
 }

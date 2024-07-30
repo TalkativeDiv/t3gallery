@@ -1,3 +1,3 @@
-const DefaultModal = () => null
+const DefaultModal = () => null;
 
-export default DefaultModal
+export default DefaultModal;

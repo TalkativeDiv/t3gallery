@@ -19,21 +19,21 @@ const inter = Inter({
   variable: "--font-sans",
 });
 
-
 export default function RootLayout({
   children,
-  modal
+  modal,
 }: {
   children: React.ReactNode;
   modal: React.ReactNode;
 }) {
   return (
-
     <html lang="en" suppressHydrationWarning>
-      <body className={cn(
-        "bg-background font-sans antialiased w-full",
-        inter.variable
-      )}>
+      <body
+        className={cn(
+          "w-full bg-background font-sans antialiased",
+          inter.variable,
+        )}
+      >
         <ClerkProvider>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             <NextSSRPlugin routerConfig={extractRouterConfig(ourFileRouter)} />
@@ -48,6 +48,5 @@ export default function RootLayout({
         </ClerkProvider>
       </body>
     </html>
-
   );
 }

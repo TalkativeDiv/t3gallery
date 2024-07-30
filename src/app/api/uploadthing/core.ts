@@ -7,16 +7,14 @@ import { ratelimit } from "~/server/ratelimit";
 
 const f = createUploadthing();
 
-
-
 export const ourFileRouter = {
   imageUploader: f({ image: { maxFileSize: "4MB", maxFileCount: 10 } })
     .middleware(async ({ req }) => {
       const user = await auth();
-      
+
       if (!user.userId) throw new UploadThingError("Unauthorized");
-      
-      const { success } = await ratelimit.limit(user.userId)
+
+      const { success } = await ratelimit.limit(user.userId);
       if (!success) throw new UploadThingError("Ratelimited");
 
       return { userId: user.userId };
@@ -26,7 +24,7 @@ export const ourFileRouter = {
         name: file.name,
         url: file.url,
         userId: metadata.userId,
-      })
+      });
       console.log("file url", file.url);
 
       return { uploadedBy: metadata.userId };

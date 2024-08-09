@@ -1,5 +1,5 @@
 import { clerkClient } from "@clerk/nextjs/server";
-import { X } from "lucide-react";
+import { MoveLeft } from "lucide-react";
 import React from "react";
 import { deleteImage, getSpecificImage } from "~/server/queries";
 import { Badge } from "./ui/badge";
@@ -32,7 +32,7 @@ export default async function ImagePage(props: { imgId: number }) {
     <div className="flex h-full w-full min-w-0 justify-between">
       <Button variant="ghost" size="sm" className="m-2" asChild>
         <a href="/">
-          <X />
+          <MoveLeft />
         </a>
       </Button>
       <div className="flex flex-shrink flex-col items-center justify-center p-8">

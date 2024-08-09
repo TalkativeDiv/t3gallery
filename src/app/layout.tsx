@@ -30,7 +30,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body
         className={cn(
-          "w-full bg-background font-sans antialiased",
+          "w-full bg-background font-sans leading-tight tracking-tight antialiased",
           inter.variable,
         )}
       >

@@ -6,7 +6,7 @@
 
 - ⚡ Fast and Simple CRUD functionality on images with uploads using Uploadthing, Drizzle, and Postgres.
 - 📉 Stop spam with rate limiting using Upstash.
-- 🔒 Secure authentication with Clerk.
+- 🔒 Secure and Beautiful authentication flow with Clerk, `clerk/elements` package, and Shadcn UI.
 - 🌈 Beautiful UI with Shadcn UI and TailwindCSS.
 - 🚀 Deployed with Vercel at no cost.
 
